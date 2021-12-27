@@ -16,9 +16,11 @@ class Auteur
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255,unique:true)]
     private $nom_prenom;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 1)]
     #[Assert\Regex(
         pattern:"/M|F/"
@@ -28,6 +30,7 @@ class Auteur
     #[ORM\Column(type: 'date')]
     private $date_de_naissance;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255)]
     private $nationalite;
 

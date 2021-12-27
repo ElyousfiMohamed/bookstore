@@ -16,18 +16,22 @@ class Livre
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 13,unique:true)]
     private $isbn;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255)]
     private $titre;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'integer')]
     private $nombre_pages;
 
     #[ORM\Column(type: 'date')]
     private $date_de_parution;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'integer')]
     #[Assert\Range(
             min:0,
