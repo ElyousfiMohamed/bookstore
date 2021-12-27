@@ -32,6 +32,7 @@ class LivreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($livre);
             $entityManager->flush();
+            $this->addFlash('success', 'Livre crée');
 
             return $this->redirectToRoute('livre_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ class LivreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Livre a été modifié avec succés');
 
             return $this->redirectToRoute('livre_index', [], Response::HTTP_SEE_OTHER);
         }

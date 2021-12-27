@@ -32,6 +32,7 @@ class GenreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($genre);
             $entityManager->flush();
+            $this->addFlash('success', 'Genre crée');
 
             return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ class GenreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Genre a été modifié avec succés');
 
             return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);
         }

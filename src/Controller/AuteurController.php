@@ -32,6 +32,7 @@ class AuteurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($auteur);
             $entityManager->flush();
+            $this->addFlash('success', 'Auteur crée');
 
             return $this->redirectToRoute('auteur_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ class AuteurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash('success', 'Auteur a été modifié avec succés');
 
             return $this->redirectToRoute('auteur_index', [], Response::HTTP_SEE_OTHER);
         }
