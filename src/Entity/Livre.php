@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LivreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,6 +35,18 @@ class Livre
             notInRangeMessage:"note doit étre entre {{ min }} et {{ max }}"
     )]
     private $note;
+
+    #[ORM\ManyToMany(targetEntity: Auteur::class, mappedBy: 'livres')]
+    private $auteurs;
+
+    #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'livres')]
+    private $genres;
+
+    public function __construct()
+    {
+        $this->auteurs = new ArrayCollection();
+        $this->genres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -95,6 +109,57 @@ class Livre
     public function setNote(int $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Auteur[]
+     */
+    public function getAuteurs(): Collection
+    {
+        return $this->auteurs;
+    }
+
+    public function addAuteur(Auteur $auteur): self
+    {
+        if (!$this->auteurs->contains($auteur)) {
+            $this->auteurs[] = $auteur;
+            $auteur->addLivre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuteur(Auteur $auteur): self
+    {
+        if ($this->auteurs->removeElement($auteur)) {
+            $auteur->removeLivre($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Genre[]
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres[] = $genre;
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        $this->genres->removeElement($genre);
 
         return $this;
     }
