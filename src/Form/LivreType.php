@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Livre;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,9 @@ class LivreType extends AbstractType
             ->add('isbn')
             ->add('titre')
             ->add('nombre_pages')
-            ->add('date_de_parution')
+            ->add('date_de_parution',DateType::class, [
+                'widget' => 'single_text',
+            ])
             ->add('note')
             ->add('auteurs')
             ->add('genres')

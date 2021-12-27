@@ -6,6 +6,8 @@ use App\Entity\Auteur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 
 class AuteurType extends AbstractType
 {
@@ -14,7 +16,9 @@ class AuteurType extends AbstractType
         $builder
             ->add('nom_prenom')
             ->add('sexe')
-            ->add('date_de_naissance')
+            ->add('date_de_naissance',DateType::class, [
+                'widget' => 'choice',
+            ])
             ->add('nationalite')
             ->add('livres')
         ;
