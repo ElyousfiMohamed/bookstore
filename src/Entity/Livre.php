@@ -28,7 +28,7 @@ class Livre
     #[ORM\Column(type: 'integer')]
     private $nombre_pages;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'string')]
     private $date_de_parution;
 
     #[Assert\NotBlank]
@@ -93,12 +93,12 @@ class Livre
         return $this;
     }
 
-    public function getDateDeParution(): ?\DateTimeInterface
+    public function getDateDeParution(): ?String
     {
         return $this->date_de_parution;
     }
 
-    public function setDateDeParution(\DateTimeInterface $date_de_parution): self
+    public function setDateDeParution(String $date_de_parution): self
     {
         $this->date_de_parution = $date_de_parution;
 

@@ -8,9 +8,10 @@
                 {{ message }}
             </div>
     {% endfor %}
-    <h1>Auteur index</h1>
+    <fieldset style="border:10px solid #1B5E20;padding :30px;background:#A5D6A7">
+    <center><legend style="background-color: #1B5E20;color: #fff;padding: 5px 10px;">"Auteur"</legend></center>
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -27,7 +28,7 @@
                 <td>{{ auteur.id }}</td>
                 <td>{{ auteur.nomPrenom }}</td>
                 <td>{{ auteur.sexe }}</td>
-                <td>{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ auteur.dateDeNaissance }}</td>
                 <td>{{ auteur.nationalite }}</td>
                 <td>
                     <a href="{{ path('auteur_show', {'id': auteur.id}) }}">show</a>
@@ -43,4 +44,5 @@
     </table>
 
     <a href="{{ path('auteur_new') }}">Create new</a>
+    </fieldset>
 {% endblock %}

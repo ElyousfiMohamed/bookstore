@@ -15,8 +15,15 @@
         {% endblock %}
     </head>
     <body>
-        <div class="container m-5">
-            {% block body %}{% endblock %}
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 mt-0 p-2 justify-content-center">
+                <a class="navbar-brand" href="{{ path('auteur_index') }}">|&nbsp;&nbsp;Auteur&nbsp;&nbsp;|</a>  
+                <a class="navbar-brand" href="{{ path('livre_index') }}">Livre&nbsp;&nbsp;|&nbsp;</a>
+                <a class="navbar-brand" href="{{ path('genre_index') }}">Genre&nbsp;&nbsp;|</a>
+            </nav>
+            {% block body %}
+                {{ include('../livre/index.html.twig') }}
+            {% endblock %}
         </div>
     </body>
 </html>

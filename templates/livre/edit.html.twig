@@ -3,11 +3,12 @@
 {% block title %}Edit Livre{% endblock %}
 
 {% block body %}
-    <h1>Edit Livre</h1>
+    <fieldset style="border:10px solid #263238;padding :30px;background:#B0BEC5">
+    <center><legend style="background-color: #263238;color: #fff;padding: 5px 10px;">"Modifier Livre"</legend></center>
 
-    {{ include('livre/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('livre/_form.html.twig', {'button_label': 'Update'}) }}<br>
+    {{ include('livre/_delete_form.html.twig') }}<br>
 
     <a href="{{ path('livre_index') }}">back to list</a>
 
-    {{ include('livre/_delete_form.html.twig') }}
 {% endblock %}

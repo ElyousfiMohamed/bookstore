@@ -1,3 +1,5 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\LivreController::index
+    defaults:
+        template:  '../templates/livre/index.html.twig'

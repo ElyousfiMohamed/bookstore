@@ -27,7 +27,7 @@ class Auteur
     )]
     private $sexe;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'string')]
     private $date_de_naissance;
 
     #[Assert\NotBlank]
@@ -71,12 +71,12 @@ class Auteur
         return $this;
     }
 
-    public function getDateDeNaissance(): ?\DateTimeInterface
+    public function getDateDeNaissance(): ?String
     {
         return $this->date_de_naissance;
     }
 
-    public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
+    public function setDateDeNaissance(String $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;
 

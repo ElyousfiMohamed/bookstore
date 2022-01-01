@@ -8,9 +8,9 @@
                 {{ message }}
             </div>
     {% endfor %}
-    <h1>Livre index</h1>
-
-    <table class="table">
+    <fieldset style="border:10px solid #263238;padding :30px;background:#B0BEC5">
+    <center><legend style="background-color: #263238;color: #fff;padding: 5px 10px;">"Livre"</legend></center>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -29,7 +29,7 @@
                 <td>{{ livre.isbn }}</td>
                 <td>{{ livre.titre }}</td>
                 <td>{{ livre.nombrePages }}</td>
-                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+                <td>{{ livre.dateDeParution }}</td>
                 <td>{{ livre.note }}</td>
                 <td>
                     <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>

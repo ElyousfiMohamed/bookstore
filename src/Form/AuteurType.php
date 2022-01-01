@@ -17,7 +17,7 @@ class AuteurType extends AbstractType
             ->add('nom_prenom')
             ->add('sexe')
             ->add('date_de_naissance',DateType::class, [
-                'widget' => 'choice',
+                'widget' => 'single_text'
             ])
             ->add('nationalite')
             ->add('livres')
