@@ -7,6 +7,21 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <style>
+                .navbar-brand {
+                    border-left:1px white solid;
+                    padding:20px;
+                    margin:0;
+                }
+                .navbar-brand:hover{
+                    background-color : #424242;
+                }
+
+                .logout:hover{
+                     background-color : #212529;
+                }
+            </style>
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
@@ -16,10 +31,12 @@
     </head>
     <body>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 mt-0 p-2 justify-content-center">
-                <a class="navbar-brand" href="{{ path('auteur_index') }}">|&nbsp;&nbsp;Auteur&nbsp;&nbsp;|</a>  
-                <a class="navbar-brand" href="{{ path('livre_index') }}">Livre&nbsp;&nbsp;|&nbsp;</a>
-                <a class="navbar-brand" href="{{ path('genre_index') }}">Genre&nbsp;&nbsp;|</a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 mt-0 justify-content-center p-0">
+                <a class="navbar-brand" href="{{ path('user_index') }}">User</a>
+                <a class="navbar-brand" href="{{ path('auteur_index') }}">Auteur</a>  
+                <a class="navbar-brand" href="{{ path('livre_index') }}" >Livre</a>
+                <a class="navbar-brand" href="{{ path('genre_index') }}" style="border-right:1px white solid;margin-right : 200px;padding:20px">Genre</a>
+                <a class="navbar-brand logout" href="{{ path('app_logout') }}" style="color:red;border-left:0px;">Logout <i class="fa fa-sign-out fa-xs" aria-hidden="true"></i>&nbsp;&nbsp;</a>|
             </nav>
             {% block body %}
                 {{ include('../livre/index.html.twig') }}

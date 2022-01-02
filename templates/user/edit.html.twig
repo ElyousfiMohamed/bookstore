@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <fieldset style="border:10px solid #212121;padding :30px;background:#E0E0E0">
+    <center><legend style="background-color: #212121;color: #fff;padding: 5px 10px;">"Modifier User"</legend></center>
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('user/_delete_form.html.twig') }}
+
+    <a href="{{ path('user_index') }}">back to list</a>
+
+{% endblock %}

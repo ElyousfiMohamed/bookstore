@@ -27,8 +27,8 @@ class AppFixtures extends Fixture
         for($i=0;$i<20;$i++) {
             $auteur = new Auteur();
             $auteur -> setNomPrenom($faker->name()." ".$faker->lastName())
-                    -> setSexe($faker->randomElement(['male', 'female']))
-                    -> setDateDeNaissance($faker->date($format = 'd/m/Y', $max = 'now'))
+                    -> setSexe($faker->randomElement(['m', 'f']))
+                    -> setDateDeNaissance($faker->dateTimeBetween($startDate = '1900-01-01', $endDate = '2021-01-01', $timezone = null))
                     -> setNationalite($faker->country());
                     
             $this->addReference('auteur_'.$i,$auteur);
@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
             }
             $livre->setIsbn($faker->isbn13);
             $livre->setTitre($faker->realText(25));
-            $livre->setDateDeParution($faker->date($format = 'd/m/Y', $max = 'now'));
+            $livre->setDateDeParution($faker->dateTimeBetween($startDate = '1900-01-01', $endDate = '2021-01-01', $timezone = null));
             $livre->setNombrePages($faker->numberBetween($min = 10,$max=500));
             $livre->setNote($faker->numberBetween($min = 0,$max=20));
             

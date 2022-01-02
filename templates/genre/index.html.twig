@@ -25,8 +25,10 @@
                 <td>{{ genre.id }}</td>
                 <td>{{ genre.nom }}</td>
                 <td>
+                {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
                     <a href="{{ path('genre_show', {'id': genre.id}) }}">show</a>
                     <a href="{{ path('genre_edit', {'id': genre.id}) }}">edit</a>
+                {% endif  %}
                 </td>
             </tr>
         {% else %}
@@ -36,6 +38,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
     <a href="{{ path('genre_new') }}">Create new</a>
+    {% endif  %}
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AuteurRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,7 +28,7 @@ class Auteur
     )]
     private $sexe;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'date')]
     private $date_de_naissance;
 
     #[Assert\NotBlank]
@@ -71,12 +72,12 @@ class Auteur
         return $this;
     }
 
-    public function getDateDeNaissance(): ?String
+    public function getDateDeNaissance(): ?\DateTime
     {
         return $this->date_de_naissance;
     }
 
-    public function setDateDeNaissance(String $date_de_naissance): self
+    public function setDateDeNaissance(\DateTime $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;
 

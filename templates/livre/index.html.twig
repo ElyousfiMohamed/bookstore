@@ -29,11 +29,13 @@
                 <td>{{ livre.isbn }}</td>
                 <td>{{ livre.titre }}</td>
                 <td>{{ livre.nombrePages }}</td>
-                <td>{{ livre.dateDeParution }}</td>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('d-m-Y') : ''  }}</td>
                 <td>{{ livre.note }}</td>
                 <td>
+                {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
                     <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>
                     <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
+                {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -43,6 +45,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('livre_new') }}">Create new</a>
+    {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
+        <a href="{{ path('livre_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

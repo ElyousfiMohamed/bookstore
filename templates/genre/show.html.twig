@@ -20,8 +20,9 @@
     </table>
 
     <a href="{{ path('genre_index') }}">back to list</a>
-
+    {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
     <a href="{{ path('genre_edit', {'id': genre.id}) }}">edit</a>
 
     {{ include('genre/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
