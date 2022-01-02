@@ -2,4 +2,4 @@ index:
     path: /
     controller: App\Controller\LivreController::index
     defaults:
-        template:  '../templates/livre/index.html.twig'
+        template:  '../templates/base.html.twig'
