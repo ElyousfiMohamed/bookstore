@@ -8,37 +8,34 @@
                 {{ message }}
             </div>
     {% endfor %}
-    <fieldset style="border:10px solid #01579B;padding :30px;background:#81D4FA">
-    <center><legend style="background-color: #01579B;color: #fff;padding: 5px 10px;">"Genre"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Genres</legend></center>
     
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+        <div class="row">
         {% for genre in genres %}
-            <tr>
-                <td>{{ genre.id }}</td>
-                <td>{{ genre.nom }}</td>
-                <td>
-                {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-                    <a href="{{ path('genre_show', {'id': genre.id}) }}">show</a>
-                    <a href="{{ path('genre_edit', {'id': genre.id}) }}">edit</a>
-                {% endif  %}
-                </td>
-            </tr>
+            <div class="col-4">
+            <div class="card border-dark m-1" style="width: 18rem;">
+                    <div class="card-body" style="display:inline;">
+                        <h5 class="card-title">Genre {{ genre.id }}</h5>
+                        <h6 class="card-title">Nom : {{ genre.nom }}</h3>
+                        {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
+                        <a href="{{ path('genre_show', {'id': genre.id}) }}" class="btn btn-primary">Show</a>
+                        <a href="{{ path('genre_edit', {'id': genre.id}) }}" class="btn btn-warning">edit</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body" style="display:inline;">
+                <h5 class="card-title">no records found</h5>
+            </div>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+    </div>
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-    <a href="{{ path('genre_new') }}">Create new</a>
+    <a href="{{ path('genre_new') }}" class="btn btn-primary">Create new</a>
     {% endif  %}
 {% endblock %}

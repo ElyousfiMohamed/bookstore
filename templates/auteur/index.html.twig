@@ -8,44 +8,38 @@
                 {{ message }}
             </div>
     {% endfor %}
-    <fieldset style="border:10px solid #1B5E20;padding :30px;background:#A5D6A7">
-    <center><legend style="background-color: #1B5E20;color: #fff;padding: 5px 10px;">"Auteur"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Auteurs</legend></center>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom_prenom</th>
-                <th>Sexe</th>
-                <th>Date_de_naissance</th>
-                <th>Nationalite</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+        <div class="row">
         {% for auteur in auteurs %}
-            <tr>
-                <td>{{ auteur.id }}</td>
-                <td>{{ auteur.nomPrenom }}</td>
-                <td>{{ auteur.sexe }}</td>
-                <td>{{ auteur.dateDeNaissance|date('d-m-Y') }} </td>
-                <td>{{ auteur.nationalite }}</td>
-                <td>
-                {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-                    <a href="{{ path('auteur_show', {'id': auteur.id}) }}">show</a>
-                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}">edit</a>
-                {% endif  %}
-                </td>
-            </tr>
+            <div class="col-4">
+            <div class="card border-dark m-1" style="width: 18rem;">
+                    <div class="card-body" style="display:inline;">
+                        <h5 class="card-title">{{ auteur.nomPrenom }}</h5>
+                        <h6 class="card-title">ID : {{ auteur.id }}</h3>
+                        <h6 class="card-title">Sexe : {{ auteur.sexe }}</h3>
+                        <h6 class="card-title">Nationalité : {{ auteur.nationalite }}</h3>
+                        <h6 class="card-title">Date de naissance : {{ auteur.dateDeNaissance|date('d-m-Y') }}</h3>
+                        {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
+                        <a href="{{ path('auteur_show', {'id': auteur.id}) }}" class="btn btn-primary">Show</a>
+                        <a href="{{ path('auteur_edit', {'id': auteur.id}) }}" class="btn btn-warning">edit</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body" style="display:inline;">
+                <h5 class="card-title">no records found</h5>
+            </div>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+    </div>
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-    <a href="{{ path('auteur_new') }}">Create new</a>
+    <a href="{{ path('auteur_new') }}" class="btn btn-primary">Create new</a>
     {% endif  %}
     </fieldset>
 {% endblock %}

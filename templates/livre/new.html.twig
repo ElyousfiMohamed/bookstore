@@ -4,10 +4,10 @@
 
 {% block body %}
 
-    <fieldset style="border:10px solid #263238;padding :30px;background:#B0BEC5">
-    <center><legend style="background-color: #263238;color: #fff;padding: 5px 10px;">"Ajouter nouveau Livre"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Livres</legend></center>
 
     {{ include('livre/_form.html.twig') }}
 
-    <a href="{{ path('livre_index') }}">back to list</a>
+    <a href="{{ path('livre_index') }}" class="btn btn-primary mt-1">back to list</a>
 {% endblock %}

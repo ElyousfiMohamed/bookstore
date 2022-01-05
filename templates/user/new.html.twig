@@ -4,9 +4,9 @@
 
 {% block body %}
 
-    <fieldset style="border:10px solid #212121;padding :30px;background:#E0E0E0">
-    <center><legend style="background-color: #212121;color: #fff;padding: 5px 10px;">"Ajouter un nouveau User"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Utilisateur</legend></center>
     {{ include('user/_form.html.twig') }}
 
-    <a href="{{ path('user_index') }}">back to list</a>
+    <a href="{{ path('user_index') }}" class="btn btn-primary mb-3">back to list</a>
 {% endblock %}

@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    <fieldset style="border:10px solid #263238;padding :30px;background:#B0BEC5">
-    <center><legend style="background-color: #263238;color: #fff;padding: 5px 10px;">"Livre"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Livres</legend></center>
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -35,9 +35,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('livre_index') }}">back to list</a>
+    <a href="{{ path('livre_index') }}" class="btn btn-primary">back to list</a>
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-    <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
+    <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="btn btn-warning">edit</a>
     {{ include('livre/_delete_form.html.twig') }}
     {% endif %}
 {% endblock %}

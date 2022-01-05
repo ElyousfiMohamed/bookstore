@@ -1,6 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Livre index{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        let index = 4;
+        function showHide() {
+            if(index % 2 == 0) {
+                document.getElementById("showHide").style.display="block"; 
+                index++;
+            }else{
+                document.getElementById("showHide").style.display="none"; 
+                index++;
+            }
+        }
+    </script>
+{% endblock %}
 
 {% block body %}
     {% for message in app.flashes('success') %}
@@ -8,44 +22,46 @@
                 {{ message }}
             </div>
     {% endfor %}
-    <fieldset style="border:10px solid #263238;padding :30px;background:#B0BEC5">
-    <center><legend style="background-color: #263238;color: #fff;padding: 5px 10px;">"Livre"</legend></center>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Isbn</th>
-                <th>Titre</th>
-                <th>Nombre_pages</th>
-                <th>Date_de_parution</th>
-                <th>Note</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;" class="mb-3">Livres <a class="pl-5" role="button" onclick="showHide()"><i class="fas fa-search fa-xs"></i><a/></legend></center>
+    <center style="display:none;" id="showHide"><form class="m-3 d-block" action="/" method="post">
+        <input type="text" name="nomLivre" placeholder="nom du livre" class="form-control m-1">
+        <input type="text" name="note" placeholder="note minimale du livre" class="form-control m-1">
+        <input type="text" name="dateInf" placeholder="année min" class="form-control m-1">
+        <input type="text" name="dateSup" placeholder="année max" class="form-control m-1">
+        <button type="submit" class="btn btn-success">Rechercher</button>
+    </form></center>
+    <div class="container">
+        <div class="row">
         {% for livre in livres %}
-            <tr>
-                <td>{{ livre.id }}</td>
-                <td>{{ livre.isbn }}</td>
-                <td>{{ livre.titre }}</td>
-                <td>{{ livre.nombrePages }}</td>
-                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('d-m-Y') : ''  }}</td>
-                <td>{{ livre.note }}</td>
-                <td>
-                {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-                    <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>
-                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
-                {% endif %}
-                </td>
-            </tr>
+            <div class="col-4">
+            <div class="card border-dark m-1" style="width: 18rem;">
+                    <div class="card-body" style="display:inline;">
+                        <h5 class="card-title">{{ livre.titre }}</h5>
+                        <h6 class="card-title">ID : {{ livre.id }}</h3>
+                        <h6 class="card-title">ISBN : {{ livre.isbn }}</h3>
+                        <h6 class="card-title">Note : {{ livre.Note }}</h3>
+                        <h6 class="card-title">Nombre de pages : {{ livre.nombrePages }}</h3>
+                        <h6 class="card-title">Date de parution : {{ livre.dateDeParution ? livre.dateDeParution|date('d-m-Y') : ''  }}</h3>
+                        {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
+                        <a href="{{ path('livre_show', {'id': livre.id}) }}" class="btn btn-primary">Show</a>
+                        <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="btn btn-warning">edit</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body" style="display:inline;">
+                <h5 class="card-title">no records found</h5>
+            </div>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+    </div>
+        
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-        <a href="{{ path('livre_new') }}">Create new</a>
+        <a href="{{ path('livre_new') }}" class="btn btn-primary">Create new</a>
     {% endif %}
+    </fieldset>
 {% endblock %}

@@ -3,12 +3,12 @@
 {% block title %}Edit Auteur{% endblock %}
 
 {% block body %}
-    <fieldset style="border:10px solid #1B5E20;padding :30px;background:#A5D6A7">
-    <center><legend style="background-color: #1B5E20;color: #fff;padding: 5px 10px;">"Modifier Auteur"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Auteurs</legend></center>
 
     {{ include('auteur/_form.html.twig', {'button_label': 'Update'}) }}<br>
     {{ include('auteur/_delete_form.html.twig') }}<br>
 
-    <a href="{{ path('auteur_index') }}">back to list</a>
+    <a href="{{ path('auteur_index') }}" class="btn btn-primary">back to list</a>
 
 {% endblock %}

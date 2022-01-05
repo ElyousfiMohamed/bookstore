@@ -3,40 +3,24 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-     <fieldset style="border:10px solid #212121;padding :30px;background:#E0E0E0">
-    <center><legend style="background-color: #212121;color: #fff;padding: 5px 10px;">"User"</legend></center>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Utilisateurs</legend></center>
         {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>
-                {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                {% endif  %}
-                </td>
-            </tr>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Utilisateur {{ user.id }}</h5>
+                <h6 class="card-title">Email : {{ user.email }}</h3>
+                <h6 class="card-title">Roles : {{ user.roles ? user.roles|json_encode : '' }}</h3>
+                <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-primary">Show</a>
+                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-warning">edit</a>
+            </div>
+        </div>
         {% else %}
             <tr>
                 <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-        <a href="{{ path('user_new') }}">Create new</a>
+        <a href="{{ path('user_new') }}" class="btn btn-primary mt-3">Create new</a>
     {% endif  %}
 {% endblock %}

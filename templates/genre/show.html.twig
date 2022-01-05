@@ -3,8 +3,8 @@
 {% block title %}Genre{% endblock %}
 
 {% block body %}
-    <fieldset style="border:10px solid #01579B;padding :30px;background:#81D4FA">
-    <center><legend style="background-color: #01579B;color: #fff;padding: 5px 10px;">"Genre"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Genres</legend></center>
 
     <table class="table table-bordered">
         <tbody>
@@ -19,9 +19,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('genre_index') }}">back to list</a>
+    <a href="{{ path('genre_index') }}" class="btn btn-primary">back to list</a>
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
-    <a href="{{ path('genre_edit', {'id': genre.id}) }}">edit</a>
+    <a href="{{ path('genre_edit', {'id': genre.id}) }}" class="btn btn-warning">edit</a>
 
     {{ include('genre/_delete_form.html.twig') }}
     {% endif %}

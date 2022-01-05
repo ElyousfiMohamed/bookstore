@@ -3,18 +3,18 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+<form method="post" style="display:flex;justify-content:center" class="mt-5">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnecter</a>
         </div>
     {% endif %}
-    <fieldset style="border:10px solid #212121;padding :30px;background:#E0E0E0">
-    <center><legend style="background-color: #212121;color: #fff;padding: 5px 10px;">"sign in"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;width:50%;" >
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Se connecter</legend></center>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">Password</label>
@@ -37,6 +37,6 @@
     <br>
     <center><button class="btn btn-lg btn-primary" type="submit">
         Sign in
-    </button></center>
+    </button></center></fieldset>
 </form>
 {% endblock %}

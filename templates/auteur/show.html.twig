@@ -3,8 +3,9 @@
 {% block title %}Auteur{% endblock %}
 
 {% block body %}
-    <fieldset style="border:10px solid #1B5E20;padding :30px;background:#A5D6A7">
-    <center><legend style="background-color: #1B5E20;color: #fff;padding: 5px 10px;">"Auteur"</legend></center>
+    <fieldset style="border:10px solid black;padding :30px;">
+    <center><legend style="background-color: black;color: #fff;padding: 5px 10px;">Auteurs</legend></center>
+
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -30,10 +31,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('auteur_index') }}">back to list</a>
+    <a href="{{ path('auteur_index') }}" class="btn btn-primary">back to list</a>
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
     {{ include('auteur/_delete_form.html.twig') }}
 
-    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}">edit</a>
+    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}" class="btn btn-warning">edit</a>
     {% endif  %}
 {% endblock %}
